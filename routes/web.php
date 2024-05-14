@@ -1,25 +1,23 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserLoginController;
-use App\Http\Controllers\UserRegisterController;
-use App\Http\Controllers\AdminLoginController;
-use App\Http\Controllers\AdminRegisterController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AuthController;
+use App\Http\Middleware\CheckRole;
 
-Route::get('/', function () {
-    return view('welcome');
-})->name("welcome");
+Route::get('/', [HomeController::class, "Home"])->middleware('checkRole')->name('home');
 
-Route::get('/user/login', [UserLoginController::class, "Userlogin"])->name("user.login");
-Route::post('/user/login', [UserLoginController::class, "UserloginPost"])->name("user.login.post");
+Route::get('/login', [AuthController::class, "Login"])->name('login');
+Route::post('/login', [AuthController::class, "LoginPost"])->name('login.post');
 
-Route::get('/admin/login', [AdminLoginController::class, "Adminlogin"])->name("admin.login");
-//Route::post('/admin/login', [AdminLoginController::class, "AdminLoginPost"])->name("admin.login.post");
+Route::get('/register', [AuthController::class, "Register"])->name('register');
+Route::post('/register', [AuthController::class, "RegisterPost"])->name('register.post');
 
-Route::get('/user/signin', [UserRegisterController::class, "Usersignin"])->name("user.signin");
-Route::post('/user/signin', [UserRegisterController::class, "UserSigninPost"])->name("user.signin.post");
+Route::get('/adminpage', [HomeController::class, "AdminPage"])->name("adminpage");
+Route::get('/userpage', [HomeController::class, "UserPage"])->name("userpage");
 
-Route::get('/admin/signin', [AdminRegisterController::class, "Adminsignin"])->name("admin.signin");
-// Route::post('/admin/signin', [AdminRegisterController::class, "AdminSigninPost"])->name("admin.signin.post");
+Route::get('/logout', [AuthController::class, "Logout"])->name("logout");
+
+
 
 
