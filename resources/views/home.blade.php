@@ -48,7 +48,7 @@
                       <span class="hide-menu">AUTH</span>
                     </li>
                     <li class="sidebar-item">
-                      <a class="sidebar-link" href="{{route('user.login')}}" aria-expanded="false">
+                      <a class="sidebar-link" href="{{route('login')}}" aria-expanded="false">
                         <span>
                           <i class="ti ti-login"></i>
                         </span>
@@ -56,7 +56,7 @@
                       </a>
                     </li>
                     <li class="sidebar-item">
-                      <a class="sidebar-link" href="{{route('user.signin')}}" aria-expanded="false">
+                      <a class="sidebar-link" href="{{route('register')}}" aria-expanded="false">
                         <span>
                           <i class="ti ti-user-plus"></i>
                         </span>
@@ -121,6 +121,8 @@
       <!--  Header End -->
       <div class="container-fluid">
         <!--  Row 1 -->
+
+        @yield('section')
 
         
        

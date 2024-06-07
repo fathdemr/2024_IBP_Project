@@ -33,22 +33,22 @@
                   <ul id="sidebarnav">
                     <li class="nav-small-cap">
                       <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                      <span class="hide-menu">Admin Page</span>
+                      <span class="hide-menu">Home</span>
                     </li>
                     <li class="sidebar-item">
-                      <a class="sidebar-link" href="./index.html" aria-expanded="false">
+                      <a class="sidebar-link" href="{{ url('/dashboard') }}" aria-expanded="false">
                         <span>
                           <i class="ti ti-layout-dashboard"></i>
                         </span>
                         <span class="hide-menu">Dashboard</span>
                       </a>
                     </li> 
-                    <!-- <li class="nav-small-cap">
+                    <li class="nav-small-cap">
                       <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                       <span class="hide-menu">AUTH</span>
                     </li>
                     <li class="sidebar-item">
-                      <a class="sidebar-link" href="" aria-expanded="false">
+                      <a class="sidebar-link" href="{{route('login')}}" aria-expanded="false">
                         <span>
                           <i class="ti ti-login"></i>
                         </span>
@@ -56,13 +56,63 @@
                       </a>
                     </li>
                     <li class="sidebar-item">
-                      <a class="sidebar-link" href="" aria-expanded="false">
+                      <a class="sidebar-link" href="{{route('register')}}" aria-expanded="false">
                         <span>
                           <i class="ti ti-user-plus"></i>
                         </span>
                         <span class="hide-menu">Register</span>
                       </a>
-                    </li> -->
+                    </li>
+                    @if($_SESSION['User']->Type == 'Admin')
+                    <li class="nav-small-cap">
+                      <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                      <span class="hide-menu">Admin</span>
+                    </li>
+                    <li class="sidebar-item">
+                      <a class="sidebar-link" href="{{ url('/manageusers') }}" aria-expanded="false">
+                        <span>
+                          <i class="ti ti-login"></i>
+                        </span>
+                        <span class="hide-menu">Manage Users</span>
+                      </a>
+                    </li>
+                    <li class="sidebar-item">
+                      <a class="sidebar-link" href="{{ url('/announcement') }}" aria-expanded="false">
+                        <span>
+                          <i class="ti ti-login"></i>
+                        </span>
+                        <span class="hide-menu">Announcement</span>
+                      </a>
+                    </li>
+                    @endif
+                    <li class="nav-small-cap">
+                      <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                      <span class="hide-menu">Products</span>
+                    </li>
+                    <li class="sidebar-item">
+                      <a class="sidebar-link" href="{{ url('/product') }}" aria-expanded="false">
+                        <span>
+                          <i class="ti ti-login"></i>
+                        </span>
+                        <span class="hide-menu">Products</span>
+                      </a>
+                    </li>
+
+                    @if($_SESSION['User']->Type == 'User')
+                    <li class="nav-small-cap">
+                      <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                      <span class="hide-menu">Message</span>
+                    </li>
+                    <li class="sidebar-item">
+                      <a class="sidebar-link" href="{{ url('/messages') }}" aria-expanded="false">
+                        <span>
+                          <i class="ti ti-login"></i>
+                        </span>
+                        <span class="hide-menu">Message</span>
+                      </a>
+                    </li>
+                    @endif
+                  
                   </ul>
         </nav>
 
@@ -98,7 +148,7 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
                   <div class="message-body">
-                    <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
+                    <a href="{{ url('myprofile/'.$_SESSION['User']->Id) }}" class="d-flex align-items-center gap-2 dropdown-item">
                       <i class="ti ti-user fs-6"></i>
                       <p class="mb-0 fs-3">My Profile</p>
                     </a>
@@ -122,10 +172,8 @@
       <div class="container-fluid">
         <!--  Row 1 -->
 
-        
-       
-          
-              
+        @yield('section')
+
   <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
   <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../assets/js/sidebarmenu.js"></script>
@@ -133,6 +181,12 @@
   <script src="../assets/libs/apexcharts/dist/apexcharts.min.js"></script>
   <script src="../assets/libs/simplebar/dist/simplebar.js"></script>
   <script src="../assets/js/dashboard.js"></script>
+
+        
+       
+          
+              
+ 
 </body>
 
 </html>
